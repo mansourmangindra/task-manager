@@ -1,0 +1,12 @@
+{
+  "tasks": [
+    {
+      "title": "eqwewqewqewq",
+      "description": "eqwewqeqwewqeqwe",
+      "status": "in-progress",
+      "dueDate": "2026-10-06",
+      "id": "TkE4RgNQskc"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

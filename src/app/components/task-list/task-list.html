@@ -1,0 +1,29 @@
+<section class="task-section">
+  <div class="section-heading">
+    <h2>Your Tasks</h2>
+    <p>{{ taskCount() }} tasks available</p>
+  </div>
+  @if (errorMessage()) {
+    <p class="request-error">
+      {{ errorMessage() }}
+    </p>
+  }
+
+  <div class="task-grid">
+    @for (task of tasks(); track task.id) {
+      <article class="task-card">
+        <span class="task-status">
+          {{ task.status }}
+        </span>
+        <h3>{{ task.title }}</h3>
+        <p>{{ task.description }}</p>
+        <button type="button" (click)="toggleCompletion(task.id)">Toggle Completion</button>
+        <a [routerLink]="['/task', task.id]"> View Details </a>
+        <button type="button" (click)="deleteTask(task.id)">Delete Task</button>
+        <small> Due: {{ task.dueDate }} </small>
+      </article>
+    } @empty {
+      <p>No tasks available</p>
+    }
+  </div>
+</section>

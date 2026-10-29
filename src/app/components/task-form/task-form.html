@@ -1,0 +1,57 @@
+<section class="task-form-section">
+  <div class="form-heading">
+    <h2>Create a Task</h2>
+    <p>Add a new task to your workspace.</p>
+  </div>
+
+  <form [formGroup]="taskForm" (ngSubmit)="submitTask()">
+    <label>
+      <span>Task title</span>
+      <input type="text" formControlName="title" placeholder="Enter a task title" />
+      @if (taskForm.controls.title.invalid && taskForm.controls.title.touched) {
+        <small class="field-error">
+          @if (taskForm.controls.title.hasError('required')) {
+            A task title is required.
+          } @else if (taskForm.controls.title.hasError('minlength')) {
+            Enter at least 3 characters.
+          }
+        </small>
+      }
+    </label>
+
+    <label>
+      <span>Description</span>
+      <textarea formControlName="description" rows="4" placeholder="Describe the task"></textarea>
+      @if (taskForm.controls.description.invalid && taskForm.controls.description.touched) {
+        <small class="field-error">
+          @if (taskForm.controls.description.hasError('required')) {
+            A description is required.
+          } @else if (taskForm.controls.description.hasError('minlength')) {
+            Enter at least 10 characters.
+          }
+        </small>
+      }
+    </label>
+
+    <div class="form-row:">
+      <label>
+        <span>Status</span>
+        <select formControlName="status">
+          <option value="todo">To Do</option>
+          <option value="in-progress">In Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Due date</span>
+        <input type="date" formControlName="dueDate" />
+        @if (taskForm.controls.dueDate.invalid && taskForm.controls.dueDate.touched) {
+          <small class="field-error"> Please select a due date. </small>
+        }
+      </label>
+    </div>
+
+    <button type="submit" [disabled]="taskForm.invalid">Add Task</button>
+  </form>
+</section>
